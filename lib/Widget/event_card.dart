@@ -33,12 +33,24 @@ class EventCard extends StatelessWidget {
           Image.network(image),
           Row(
             children: [
-              Text(name),
+              Flexible(
+                child: Text(
+                  name,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
               Text(location),
             ],
           ),
           Row(
-            children: [Text(description), Text(date)],
+            children: [
+              Flexible(
+                  child: Text(
+                description,
+                overflow: TextOverflow.ellipsis,
+              )),
+              Text(date)
+            ],
           )
         ],
       ),

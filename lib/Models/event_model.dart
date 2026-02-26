@@ -1,6 +1,3 @@
-import 'package:faker/faker.dart';
-import 'package:flutter/material.dart';
-
 class EventModel {
   String eventID;
   String eventName;

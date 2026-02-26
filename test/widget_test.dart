@@ -12,7 +12,7 @@ import 'package:local_event_viewer/screen/splash_screen.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(SpalshScreen());
+    await tester.pumpWidget(const SpalshScreen());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

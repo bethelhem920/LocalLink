@@ -1,34 +1,43 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:local_event_viewer/Data/mock_events.dart';
-import 'package:local_event_viewer/Widget/event_card.dart';
+import 'dart:async';
 
-class SpalshScreen extends StatelessWidget {
-  SpalshScreen({super.key});
-  String appName = "LocalLink";
-  final data = MockEvents().mockEvents;
+import 'package:flutter/material.dart';
+import 'package:local_event_viewer/screen/home_page.dart';
+
+class SpalshScreen extends StatefulWidget {
+  const SpalshScreen({super.key});
+
+  @override
+  State<SpalshScreen> createState() => _SpalshScreenState();
+}
+
+class _SpalshScreenState extends State<SpalshScreen> {
+  Timer? timer;
+  @override
+  void initState() {
+    super.initState();
+    timer = Timer(
+      const Duration(seconds: 3),
+      () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HomePage(),
+        ),
+      ),
+    );
+  }
+
+// Disposing timer for better memory
+  @override
+  void dispose() {
+    super.dispose();
+    timer?.cancel();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // if (kDebugMode) {
-    //   print(MockEvents().mockEvents);
-    // }
     return Scaffold(
-      appBar: AppBar(
-        title: Text(appName),
-      ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          final event = data[index];
-          return EventCard(
-              iD: event.eventID,
-              name: event.eventName,
-              description: event.eventDescription,
-              location: event.eventLocation,
-              image: event.imageURL,
-              date: event.time.toString());
-        },
-        itemCount: data.length,
-      ),
+      backgroundColor: Colors.white,
+      body: Image.asset("assets/Images/logo.gif"),
     );
   }
 }
