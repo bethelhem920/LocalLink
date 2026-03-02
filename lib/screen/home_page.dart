@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:local_event_viewer/Provider/event_provider.dart';
 import 'package:local_event_viewer/Widget/event_card.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,8 @@ class _HomePageState extends State<HomePage> {
     // }
     final eventProvider = Provider.of<EventProvider>(context);
     final events = eventProvider.events;
+    Intl.defaultLocale = 'pt_EN';
+
     return PopScope(
       canPop: false,
       child: Scaffold(
@@ -35,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                 description: event.eventDescription,
                 location: event.eventLocation,
                 image: event.imageURL,
-                date: event.time.toString());
+                date: event.time);
           },
           itemCount: events.length,
         ),
