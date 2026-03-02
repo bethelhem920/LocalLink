@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:local_event_viewer/Provider/event_provider.dart';
 import 'package:local_event_viewer/screen/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  initializeDateFormatting('en_US', null);
   runApp(MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => EventProvider())],
       child: const MyApp()));
