@@ -27,31 +27,43 @@ class EventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-          borderRadius: BorderRadiusDirectional.all(Radius.circular(7))),
+          borderRadius: BorderRadiusDirectional.all(Radius.circular(50))),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.network(image),
-          Row(
-            children: [
-              Flexible(
-                child: Text(
-                  name,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              Text(location),
-            ],
+          Text(
+            name,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
           ),
-          Row(
-            children: [
-              Flexible(
-                  child: Text(
-                description,
-                overflow: TextOverflow.ellipsis,
-              )),
-              Text(date)
-            ],
-          )
+          Text(
+            description,
+            overflow: TextOverflow.ellipsis,
+          ),
+          Text(location),
+
+          Text(date),
+          // Row(
+          //   children: [
+          //     Flexible(
+          //       child: Text(
+          //         name,
+          //         overflow: TextOverflow.ellipsis,
+          //       ),
+          //     ),
+          //     Text(location),
+          //   ],
+          // ),
+          // Row(
+          //   children: [
+          //     Flexible(
+          //         child: Text(
+          //       description,
+          //       overflow: TextOverflow.ellipsis,
+          //     )),
+          //     Text(date)
+          //   ],
+          // )
         ],
       ),
     );

@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
       canPop: false,
       child: Scaffold(
         appBar: AppBar(
-          leading: Spacer(),
           title: Center(child: Text(appName)),
         ),
         body: ListView.builder(
