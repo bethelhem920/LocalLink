@@ -1,6 +1,7 @@
 //a custom widget to display event
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:local_event_viewer/Widget/button.dart';
 
 class EventCard extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -25,6 +26,11 @@ class EventCard extends StatelessWidget {
       required this.image,
       required this.date});
 
+  final TextStyle _textStyle = const TextStyle(
+    fontFamily: 'Fig',
+    fontWeight: FontWeight.w700,
+  );
+
   @override
   Widget build(BuildContext context) {
     Intl.defaultLocale = 'pt_US';
@@ -35,38 +41,74 @@ class EventCard extends StatelessWidget {
         "${DateFormat.EEEE('en_US').format(date)}, ${DateFormat.MMMM('en_US').format(date)} ${DateFormat.d('en_US').format(date)} ,${DateFormat.y('en_US').format(date)}";
     var formattedTime = DateFormat('hh:mm a').format(date);
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: const EdgeInsets.fromLTRB(5, 5, 5, 28),
+      padding: const EdgeInsets.all(8),
       decoration: const BoxDecoration(
-          borderRadius: BorderRadiusDirectional.all(Radius.circular(50))),
+          color: Colors.black12,
+          borderRadius: BorderRadiusDirectional.all(Radius.circular(12))),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(image),
+          Stack(alignment: AlignmentDirectional.topEnd, children: [
+            Image.network(image),
+            IconButton.outlined(
+                style: ButtonStyle(
+                  fixedSize: const WidgetStatePropertyAll(Size(50, 50)),
+                  iconSize: const WidgetStatePropertyAll(30),
+                  backgroundColor: WidgetStateProperty.all<Color>(Colors.white),
+                ),
+                onPressed: () {},
+                icon: const Icon(Icons.favorite_border)),
+            Positioned(top: 220, child: Text("Free"))
+          ]),
           Text(
             name,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Fig',
+            ),
           ),
           Text(
             description,
-            overflow: TextOverflow.ellipsis,
+            // overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              fontFamily: 'Fig',
+            ),
           ),
-          Wrap(children: [const Icon(Icons.location_pin), Text(location)]),
+          const SizedBox(
+            height: 8,
+          ),
+          Wrap(children: [
+            const Icon(Icons.location_pin),
+            Text(location, style: _textStyle)
+          ]),
 
           Wrap(
               alignment: WrapAlignment.spaceBetween,
               spacing: MediaQuery.of(context).size.width /
-                  5, // Minimum gap between items
-              runSpacing: 12.0,
+                  8, // Minimum gap between items
+              runSpacing: 1.0,
               children: [
                 Wrap(children: [
                   const Icon(Icons.calendar_month_sharp),
-                  Text(formattedDate)
+                  Text(
+                    formattedDate,
+                    style: _textStyle,
+                  )
                 ]),
                 Wrap(children: [
                   const Icon(Icons.lock_clock),
-                  Text(formattedTime)
+                  Text(
+                    formattedTime,
+                    style: _textStyle,
+                  )
                 ]),
               ]),
+          const SizedBox(
+            height: 15,
+          ),
+          const CustomButton()
           // Row(
           //   children: [
           //     Flexible(
