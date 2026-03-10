@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:local_event_viewer/Widget/button.dart';
+import 'package:local_event_viewer/screen/detail_page.dart';
 
 class EventCard extends StatelessWidget {
   // ignore: prefer_typing_uninitialized_variables
@@ -34,7 +35,6 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Intl.defaultLocale = 'pt_US';
-    var size = MediaQuery.of(context).size;
     // DateTime dateTime = DateTime.parse(date.toString());
     // print(dateTime);
     var formattedDate =
@@ -108,7 +108,18 @@ class EventCard extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          const CustomButton()
+          // const CustomButton()
+          ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => EventDetail(
+                      Id: iD,
+                    ),
+                  ),
+                );
+              },
+              child: Text("See Detail"))
           // Row(
           //   children: [
           //     Flexible(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:local_event_viewer/screen/detail_page.dart';
 
 class CustomButton extends StatefulWidget {
   const CustomButton({super.key});
@@ -12,7 +13,11 @@ class _CustomButtonState extends State<CustomButton> {
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          SnackBar(content: Text("Detailpage coming up...."));
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) => EventDetail(),
+          //   ),
+          // );
         },
         child: Text("See Detail"));
   }
