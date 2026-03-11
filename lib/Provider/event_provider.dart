@@ -11,6 +11,11 @@ class EventProvider with ChangeNotifier {
   // This allows other part of the app to ONLY read _events which a list of
   // instance of eventmodel(list of events) through "events".
 
-  // This is to cover the real data and not be override/overwritten(expose data safely)
+  // This is to cover the real data and not be override/overwritten(aka expose data safely)
   List<EventModel> get events => _events;
+
+  //This is a method to look up events using an ID
+  EventModel getById(String id) {
+    return _events.firstWhere((eventId) => eventId.eventID == id);
+  }
 }

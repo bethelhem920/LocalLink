@@ -26,21 +26,56 @@ class _HomePageState extends State<HomePage> {
     return PopScope(
       canPop: false,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          title: Center(child: Text(appName)),
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.white,
+          scrolledUnderElevation: 0,
+          title: Center(
+            child: Text(appName),
+          ),
+          actions: const [
+            Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: Icon(
+                Icons.notifications,
+                size: 30,
+              ),
+            )
+          ],
         ),
-        body: ListView.builder(
-          itemBuilder: (context, index) {
-            final event = events[index];
-            return EventCard(
-                iD: event.eventID,
-                name: event.eventName,
-                description: event.eventDescription,
-                location: event.eventLocation,
-                image: event.imageURL,
-                date: event.time);
-          },
-          itemCount: events.length,
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Welcome,'),
+              const Text(
+                'Discover amazing events',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Fig',
+                ),
+              ),
+              const Divider(),
+              Expanded(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    final event = events[index];
+                    return EventCard(
+                        iD: event.eventID,
+                        name: event.eventName,
+                        description: event.eventDescription,
+                        location: event.eventLocation,
+                        image: event.imageURL,
+                        date: event.time);
+                  },
+                  itemCount: events.length,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
